@@ -2,18 +2,6 @@ import 'package:flutter/material.dart';
 import '../utils/responsiveLayout.dart';
 
 class NavBar extends StatelessWidget{
-
-  final navItems = ["Features", "Contacts"];
-
-  List<Widget> navItem() {
-    return navItems.map((item) =>
-      Padding(
-        padding: EdgeInsets.only(left: 30),
-        child: Text(item, style: TextStyle(fontSize: 16, fontFamily: "Varela", fontWeight: FontWeight.bold))
-      )
-    ).toList();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,10 +24,32 @@ class NavBar extends StatelessWidget{
               child: Text("Dr. Robot", style: TextStyle(fontSize: 36, fontFamily: "Unica", fontWeight: FontWeight.bold)),
             ),
           ),
-          if (!ResponsiveLayout.isSmallScreen(context)) 
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: <Widget>[...navItem()]
+            children: <Widget>[
+              Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: InkWell(
+                  onTap: () => Scrollable.ensureVisible(context),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                    child: Text("Features", style: TextStyle(fontSize: 18, fontFamily: "Varela", fontWeight: FontWeight.bold)),
+                  ),
+                  borderRadius: BorderRadius.circular(90),
+                )
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 20),
+                child: InkWell(
+                  onTap: () => Scrollable.ensureVisible(context),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 10.0),
+                    child: Text("Contacts", style: TextStyle(fontSize: 18, fontFamily: "Varela", fontWeight: FontWeight.bold)),
+                  ),
+                  borderRadius: BorderRadius.circular(90),
+                )
+              ),
+            ]
           )
         ],
       ),
